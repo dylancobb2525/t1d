@@ -72,8 +72,8 @@ export function Statistics() {
     },
     {
       icon: <Calendar size={28} className="text-white" />,
-      value: "32 years",
-      description: "healthy years of life lost per person living with T1D when factoring in treatments and disease management",
+      value: "32 healthy years",
+      description: "of life lost per person living with T1D when factoring in treatments and disease management",
       color: "bg-gradient-to-br from-slate-600 to-slate-700"
     },
     {

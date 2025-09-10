@@ -23,39 +23,39 @@ function ResourceItem({ title, authors, journal, year, url, index, type }: Resou
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="group cursor-pointer"
     >
-      <div className="relative p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-xl bg-white border-slate-200 hover:border-blue-300">
+      <div className="relative p-4 rounded-xl border-2 transition-all duration-300 hover:shadow-lg bg-white border-slate-200 hover:border-blue-300 h-[280px] flex flex-col">
         
         {/* Header Row */}
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex items-center space-x-3">
-            <div className="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
-              {type === 'research' ? <FileText size={20} className="text-blue-600" /> : <Calendar size={20} className="text-blue-600" />}
+        <div className="flex items-start justify-between mb-3">
+          <div className="flex items-center space-x-2">
+            <div className="p-1.5 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
+              {type === 'research' ? <FileText size={16} className="text-blue-600" /> : <Calendar size={16} className="text-blue-600" />}
             </div>
             <div>
-              <div className="text-sm font-bold text-blue-600">{type === 'research' ? 'Research Paper' : 'Congress'}</div>
+              <div className="text-xs font-bold text-blue-600">{type === 'research' ? 'Research' : 'Congress'}</div>
               <div className="text-xs text-slate-500">{year}</div>
             </div>
           </div>
-          <div className="flex items-center space-x-2 text-xs text-slate-400">
-            <ExternalLink size={14} />
+          <div className="flex items-center space-x-1 text-xs text-slate-400">
+            <ExternalLink size={12} />
             <span className="uppercase tracking-wide font-medium">View</span>
           </div>
         </div>
 
         {/* Title */}
-        <h3 className="font-bold text-slate-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors text-lg">
+        <h3 className="font-bold text-slate-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors text-sm line-clamp-3">
           {title}
         </h3>
 
         {/* Authors/Details */}
-        <div className="bg-slate-50 rounded-xl p-4 mb-4 border border-slate-100">
+        <div className="bg-slate-50 rounded-lg p-3 mb-3 border border-slate-100 flex-1">
           <div className="flex items-start space-x-2">
-            <Users size={16} className="text-green-600 mt-0.5 flex-shrink-0" />
-            <div>
-              <p className="text-sm text-slate-700 leading-relaxed font-medium mb-1">
+            <Users size={14} className="text-green-600 mt-0.5 flex-shrink-0" />
+            <div className="min-w-0">
+              <p className="text-xs text-slate-700 leading-relaxed font-medium mb-1 line-clamp-2">
                 {authors}
               </p>
-              <p className="text-sm text-slate-600">
+              <p className="text-xs text-slate-600 line-clamp-1">
                 {journal}
               </p>
             </div>
@@ -63,24 +63,24 @@ function ResourceItem({ title, authors, journal, year, url, index, type }: Resou
         </div>
 
         {/* Action Row */}
-        <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+        <div className="flex items-center justify-between pt-3 border-t border-slate-100 mt-auto">
           <div className="text-xs text-slate-500">
-            {type === 'research' ? 'Peer-reviewed research' : 'Upcoming event'}
+            {type === 'research' ? 'Peer-reviewed' : 'Upcoming event'}
           </div>
           <a 
             href={url} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center space-x-1 text-blue-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity"
+            className="flex items-center space-x-1 text-blue-600 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity"
             onClick={(e) => e.stopPropagation()}
           >
             <span>Read More</span>
-            <ChevronRight size={16} />
+            <ChevronRight size={14} />
           </a>
         </div>
 
         {/* Hover Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-teal-600/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-teal-600/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       </div>
     </motion.div>
   )
@@ -248,15 +248,16 @@ export function ResourceCenter() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.5 }}
-            className="space-y-12"
+            className="space-y-8"
           >
+
             {/* Research Papers Section */}
             <div>
-              <div className="flex items-center space-x-3 mb-8">
-                <BookOpen size={24} className="text-blue-600" />
-                <h3 className="text-2xl font-bold text-slate-900">Latest Research Papers</h3>
+              <div className="flex items-center space-x-3 mb-6">
+                <BookOpen size={20} className="text-blue-600" />
+                <h3 className="text-xl font-bold text-slate-900">Latest Research Papers</h3>
               </div>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {researchPapers.map((paper, index) => (
                   <ResourceItem key={index} {...paper} index={index} />
                 ))}
@@ -265,11 +266,11 @@ export function ResourceCenter() {
 
             {/* Congresses Section */}
             <div>
-              <div className="flex items-center space-x-3 mb-8">
-                <Globe size={24} className="text-teal-600" />
-                <h3 className="text-2xl font-bold text-slate-900">Upcoming Congresses</h3>
+              <div className="flex items-center space-x-3 mb-6">
+                <Globe size={20} className="text-teal-600" />
+                <h3 className="text-xl font-bold text-slate-900">Upcoming Congresses</h3>
               </div>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {congresses.map((congress, index) => (
                   <ResourceItem key={index} {...congress} index={index} />
                 ))}

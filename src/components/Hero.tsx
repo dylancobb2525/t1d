@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 export function Hero() {
   return (
-    <section className="relative h-[75vh] overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+    <section className="relative h-[50vh] overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
       {/* Sophisticated Background Patterns */}
       <div className="absolute inset-0">
         {/* Medical Grid Pattern */}
@@ -102,7 +102,7 @@ export function Hero() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
           {/* Text Content */}
-          <div className="text-left space-y-8">
+          <div className="text-left space-y-6">
 
 
             {/* Main Title */}
@@ -110,9 +110,9 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2, delay: 0.1 }}
-              className="space-y-4"
+              className="space-y-3"
             >
-              <h1 className="heading-font text-4xl lg:text-5xl font-bold text-white leading-tight text-shadow-md">
+              <h1 className="heading-font text-3xl lg:text-4xl font-bold text-white leading-tight text-shadow-md">
                 IMPACT T1D: Patient Journey-Driven Approach for{' '}
                 <span className="bg-gradient-to-r from-blue-300 to-teal-300 bg-clip-text text-transparent">
                   Optimizing T1D care
@@ -125,37 +125,26 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2, delay: 0.15 }}
-              className="text-base lg:text-lg text-blue-100 leading-relaxed max-w-xl"
+              className="text-sm lg:text-base text-blue-100 leading-relaxed max-w-xl"
             >
               IMPACT T1D seeks to redefine Type 1 Diabetes care by advancing healthcare professional education across the entire patient journey — from early risk identification to long-term outcome optimization.
             </motion.p>
 
 
 
-            {/* CTA Button & Achievement */}
+            {/* CTA Button */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.4 }}
-              className="flex items-center gap-4 pt-4"
+              className="pt-4"
             >
               <button 
                 onClick={() => document.getElementById('educational-activities')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+                className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
               >
-                Explore Activities
+                Explore Programs
               </button>
-              
-              {/* Achievement Badge */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: 0.6 }}
-                className="flex items-center space-x-2 bg-gradient-to-r from-yellow-400/20 to-amber-400/20 backdrop-blur-sm rounded-lg px-3 py-1.5 text-yellow-100 text-xs border-l-4 border-yellow-400"
-              >
-                <Award size={14} className="text-yellow-400" />
-                <span className="font-medium">Global Leaders in T1D Education</span>
-              </motion.div>
             </motion.div>
           </div>
 
@@ -167,14 +156,13 @@ export function Hero() {
             className="relative"
           >
             <div className="relative w-full max-w-xl mx-auto">
-              {/* T1D Graphic */}
-              <div className="relative w-full h-80">
-                <Image
-                  src="/graphic.png"
-                  alt="T1D Impact Graphic"
-                  fill
-                  className="object-contain"
-                />
+              {/* Placeholder Box */}
+              <div className="relative w-full h-80 bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-2xl flex items-center justify-center">
+                <div className="text-center">
+                  <div className="text-6xl text-white/30 mb-4">📊</div>
+                  <div className="text-white/60 text-lg font-medium">Placeholder</div>
+                  <div className="text-white/40 text-sm">Image Coming Soon</div>
+                </div>
               </div>
 
               {/* Floating Elements */}
@@ -193,10 +181,6 @@ export function Hero() {
               >
                 <Activity className="text-teal-300" size={24} />
               </motion.div>
-
-
-
-
             </div>
           </motion.div>
         </div>

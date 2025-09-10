@@ -2,40 +2,43 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
-import { FileText, ExternalLink, Calendar, TrendingUp, Award, Beaker, Database, ArrowRight, ChevronRight, Download } from 'lucide-react'
+import { FileText, ExternalLink, Calendar, TrendingUp, Award, Beaker, Database, ArrowRight, ChevronRight, Download, BookOpen, Users, Globe } from 'lucide-react'
 
-interface ResourcePlaceholderProps {
+interface ResourceItemProps {
   title: string
-  description: string
+  authors: string
+  journal: string
+  year: string
+  url: string
   index: number
-  icon: React.ReactNode
+  type: 'research' | 'congress'
 }
 
-function ResourcePlaceholder({ title, description, index, icon }: ResourcePlaceholderProps) {
+function ResourceItem({ title, authors, journal, year, url, index, type }: ResourceItemProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="group cursor-pointer"
     >
-      <div className="relative p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-xl h-[320px] flex flex-col bg-white border-slate-200 hover:border-blue-300">
+      <div className="relative p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-xl bg-white border-slate-200 hover:border-blue-300">
         
         {/* Header Row */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
-              {icon}
+              {type === 'research' ? <FileText size={20} className="text-blue-600" /> : <Calendar size={20} className="text-blue-600" />}
             </div>
             <div>
-              <div className="text-sm font-bold text-blue-600">Coming Soon</div>
-              <div className="text-xs text-slate-500">T1D Resource</div>
+              <div className="text-sm font-bold text-blue-600">{type === 'research' ? 'Research Paper' : 'Congress'}</div>
+              <div className="text-xs text-slate-500">{year}</div>
             </div>
           </div>
           <div className="flex items-center space-x-2 text-xs text-slate-400">
-            <Database size={14} />
-            <span className="uppercase tracking-wide font-medium">TBD</span>
+            <ExternalLink size={14} />
+            <span className="uppercase tracking-wide font-medium">View</span>
           </div>
         </div>
 
@@ -44,25 +47,36 @@ function ResourcePlaceholder({ title, description, index, icon }: ResourcePlaceh
           {title}
         </h3>
 
-        {/* Description */}
-        <div className="bg-slate-50 rounded-xl p-4 mb-4 border border-slate-100 flex-1">
+        {/* Authors/Details */}
+        <div className="bg-slate-50 rounded-xl p-4 mb-4 border border-slate-100">
           <div className="flex items-start space-x-2">
-            <TrendingUp size={16} className="text-green-600 mt-0.5 flex-shrink-0" />
-            <p className="text-sm text-slate-700 leading-relaxed">
-              {description}
-            </p>
+            <Users size={16} className="text-green-600 mt-0.5 flex-shrink-0" />
+            <div>
+              <p className="text-sm text-slate-700 leading-relaxed font-medium mb-1">
+                {authors}
+              </p>
+              <p className="text-sm text-slate-600">
+                {journal}
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Action Row */}
-        <div className="flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
+        <div className="flex items-center justify-between pt-4 border-t border-slate-100">
           <div className="text-xs text-slate-500">
-            Resource will be available soon
+            {type === 'research' ? 'Peer-reviewed research' : 'Upcoming event'}
           </div>
-          <div className="flex items-center space-x-1 text-blue-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-            <span>Coming Soon</span>
+          <a 
+            href={url} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center space-x-1 text-blue-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span>Read More</span>
             <ChevronRight size={16} />
-          </div>
+          </a>
         </div>
 
         {/* Hover Overlay */}
@@ -77,26 +91,105 @@ export function ResourceCenter() {
   const isInView = useInView(ref, { once: true })
   const [showResources, setShowResources] = useState(false)
 
-  const resourcePlaceholders = [
+  const researchPapers = [
     {
-      title: "T1D Research Database",
-      description: "Comprehensive collection of latest research papers, clinical trials, and evidence-based studies in Type 1 Diabetes management and care.",
-      icon: <FileText size={20} className="text-blue-600" />
+      title: "Stem Cell-Derived, Fully Differentiated Islets for Type 1 Diabetes",
+      authors: "Reichman TW, Markmann JF, Odorico J, et al; VX-880-101 FORWARD Study Group",
+      journal: "N Engl J Med. 2025;393(9):858-868",
+      year: "2025",
+      url: "https://www.nejm.org/doi/full/10.1056/NEJMoa2506549",
+      type: "research" as const
     },
     {
-      title: "Clinical Guidelines & Protocols",
-      description: "Evidence-based clinical guidelines, treatment protocols, and best practice recommendations for T1D patient care and management.",
-      icon: <Award size={20} className="text-blue-600" />
+      title: "Semaglutide in Adults with Type 1 Diabetes and Obesity",
+      authors: "Shah VN, Akturk HK, Kruger D, et al",
+      journal: "NEJM Evid. 2025;4(8):EVIDoa2500173",
+      year: "2025",
+      url: "https://evidence.nejm.org/doi/10.1056/EVIDoa2500173",
+      type: "research" as const
     },
     {
-      title: "Patient Journey Tools",
-      description: "Interactive tools and resources to support healthcare providers in optimizing patient care across the entire T1D journey.",
-      icon: <Beaker size={20} className="text-blue-600" />
+      title: "Scientific Statement on research directions to improve treatment options for people with type 1 diabetes",
+      authors: "Endocrine Society Scientific Statement Task Force",
+      journal: "Endocrine Society. 2025",
+      year: "2025",
+      url: "https://www.endocrine.org/news-and-advocacy/news-room/2025/endocrine-society-proposes-research-efforts-to-improve-treatment-options-for-people-with-diabetes",
+      type: "research" as const
     },
     {
-      title: "Educational Materials",
-      description: "Downloadable educational content, infographics, and patient education materials for T1D care providers.",
-      icon: <Download size={20} className="text-blue-600" />
+      title: "Automated Insulin Delivery in Older Adults with Type 1 Diabetes",
+      authors: "Kudva YC, Henderson RJ, Kanapka LG, et al",
+      journal: "NEJM Evid. 2025;4(1):EVIDoa2400200",
+      year: "2025",
+      url: "https://evidence.nejm.org/doi/10.1056/EVIDoa2400200",
+      type: "research" as const
+    },
+    {
+      title: "Oral Insulin Delay of Stage 3 Type 1 Diabetes Revisited in HLA DR4-DQ8 Participants",
+      authors: "Zhao LP, Papadopoulos GK, Skyler JS, et al",
+      journal: "Diabetes Care. 2024;47(9):1608-1616",
+      year: "2024",
+      url: "https://diabetesjournals.org/care/article/47/9/1608/156940/Oral-Insulin-Delay-of-Stage-3-Type-1-Diabetes",
+      type: "research" as const
+    },
+    {
+      title: "Teplizumab's immunomodulatory effects on pancreatic β-cell function in type 1 diabetes mellitus",
+      authors: "Kokori E, Olatunji G, Ogieuhi IJ, et al",
+      journal: "Clin Diabetes Endocrinol. 2024;10(1):23",
+      year: "2024",
+      url: "https://clindiabetesendo.biomedcentral.com/articles/10.1186/s40842-024-00181-w",
+      type: "research" as const
+    },
+    {
+      title: "Prevention of Cardiovascular Disease in Type 1 Diabetes",
+      authors: "Wenstedt EFE, Vogt L",
+      journal: "N Engl J Med. 2024;390(23):2226",
+      year: "2024",
+      url: "https://www.nejm.org/doi/10.1056/NEJMc2405604",
+      type: "research" as const
+    },
+    {
+      title: "Clinical pancreatic islet transplantation",
+      authors: "Shapiro AM, Pokrywczynska M, Ricordi C",
+      journal: "Nat Rev Endocrinol. 2017 May;13(5):268-277",
+      year: "2017",
+      url: "https://www.nature.com/articles/nrendo.2016.178",
+      type: "research" as const
+    }
+  ]
+
+  const congresses = [
+    {
+      title: "ATTD 2026 - Advanced Technologies and Treatment for Diabetes",
+      authors: "Barcelona, Spain",
+      journal: "11-14 March 2026",
+      year: "2026",
+      url: "https://attd.kenes.com/",
+      type: "congress" as const
+    },
+    {
+      title: "ADA 2026 Scientific Sessions - American Diabetes Association",
+      authors: "New Orleans, Louisiana",
+      journal: "5-8 June 2026",
+      year: "2026",
+      url: "https://professional.diabetes.org/scientific-sessions",
+      type: "congress" as const
+    },
+    {
+      title: "EASD 2026 - European Association for the Study of Diabetes",
+      authors: "Milan, Italy",
+      journal: "28 September-2 October 2026",
+      year: "2026",
+      url: "https://www.easd.org/annual-meeting/easd-2026/",
+      type: "congress" as const
+    },
+    {
+      title: "ISPAD 2026 - International Society for Pediatric and Adolescent Diabetes",
+      authors: "Rio de Janeiro, Brazil",
+      journal: "Annual Conference",
+      year: "2026",
+      url: "https://www.ispad.org/events/annual-conference/future-conferences/rio-de-janeiro-brazil-2026.html",
+      type: "congress" as const
     }
   ]
 
@@ -148,18 +241,40 @@ export function ResourceCenter() {
           </motion.button>
         </motion.div>
 
-        {/* Resource Placeholders - Collapsible Grid */}
+        {/* Resources - Collapsible Content */}
         {showResources && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.5 }}
-            className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 mt-12"
+            className="space-y-12"
           >
-            {resourcePlaceholders.map((resource, index) => (
-              <ResourcePlaceholder key={index} {...resource} index={index} />
-            ))}
+            {/* Research Papers Section */}
+            <div>
+              <div className="flex items-center space-x-3 mb-8">
+                <BookOpen size={24} className="text-blue-600" />
+                <h3 className="text-2xl font-bold text-slate-900">Latest Research Papers</h3>
+              </div>
+              <div className="grid md:grid-cols-2 gap-6">
+                {researchPapers.map((paper, index) => (
+                  <ResourceItem key={index} {...paper} index={index} />
+                ))}
+              </div>
+            </div>
+
+            {/* Congresses Section */}
+            <div>
+              <div className="flex items-center space-x-3 mb-8">
+                <Globe size={24} className="text-teal-600" />
+                <h3 className="text-2xl font-bold text-slate-900">Upcoming Congresses</h3>
+              </div>
+              <div className="grid md:grid-cols-2 gap-6">
+                {congresses.map((congress, index) => (
+                  <ResourceItem key={index} {...congress} index={index} />
+                ))}
+              </div>
+            </div>
           </motion.div>
         )}
       </div>

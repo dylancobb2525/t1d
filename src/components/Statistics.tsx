@@ -21,22 +21,22 @@ function StatisticCard({ icon, value, description, index, color }: StatisticCard
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="group"
     >
-      <div className={`relative ${color} rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 group-hover:scale-105`}>
-        <div className="flex items-start space-x-4">
-          <div className="p-3 bg-white/20 rounded-xl">
+      <div className={`relative ${color} rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 group-hover:scale-105 h-32`}>
+        <div className="flex items-center space-x-3 h-full">
+          <div className="p-2 bg-white/20 rounded-lg flex-shrink-0">
             {icon}
           </div>
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             <motion.div
               initial={{ opacity: 0, scale: 0 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.2 + 0.3 }}
-              className="text-2xl lg:text-3xl font-bold text-white mb-2"
+              className="text-lg lg:text-xl font-bold text-white mb-1"
             >
               {value}
             </motion.div>
-            <p className="text-white/90 text-sm leading-relaxed">
+            <p className="text-white/90 text-xs leading-tight">
               {description}
             </p>
           </div>
@@ -80,13 +80,13 @@ export function Statistics() {
       icon: <Heart size={28} className="text-white" />,
       value: "1.98M",
       description: "more people could be alive in 2040 if everyone globally had access to insulin, test strips, and good self-management tools",
-      color: "bg-gradient-to-br from-teal-500 to-teal-600"
+      color: "bg-gradient-to-br from-blue-500 to-blue-600"
     },
     {
       icon: <Activity size={28} className="text-white" />,
       value: "174,000",
       description: "deaths worldwide predicted to be attributable to T1D",
-      color: "bg-gradient-to-br from-teal-600 to-teal-700"
+      color: "bg-gradient-to-br from-slate-500 to-slate-600"
     }
   ]
 
@@ -101,7 +101,7 @@ export function Statistics() {
       icon: <TrendingUp size={28} className="text-white" />,
       value: "25%",
       description: "reduction in death rates over the past decades",
-      color: "bg-gradient-to-br from-teal-400 to-teal-500"
+      color: "bg-gradient-to-br from-slate-400 to-slate-500"
     }
   ]
 
@@ -164,7 +164,7 @@ export function Statistics() {
           </div>
           <h2 className="heading-font text-3xl lg:text-4xl font-bold text-white mb-4">
             Type 1 Diabetes{' '}
-            <span className="bg-gradient-to-r from-blue-300 to-teal-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-300 via-yellow-300 to-teal-300 bg-clip-text text-transparent">
               Global Statistics
             </span>
           </h2>
@@ -190,7 +190,7 @@ export function Statistics() {
           <div className="text-center mb-6">
             <h3 className="text-xl lg:text-2xl font-bold text-white mb-3">
               While things have improved, the ability to{' '}
-              <span className="bg-gradient-to-r from-green-300 to-emerald-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-300 to-slate-300 bg-clip-text text-transparent">
                 IMPACT change
               </span>
               {' '}is needed

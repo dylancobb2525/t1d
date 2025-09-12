@@ -37,7 +37,7 @@ export function Hero() {
         >
           <div className="relative w-32 h-32">
             <div className="absolute top-0 left-1/2 w-3 h-3 bg-blue-400 rounded-full -translate-x-1/2" />
-            <div className="absolute top-1/2 right-0 w-3 h-3 bg-teal-400 rounded-full -translate-y-1/2" />
+            <div className="absolute top-1/2 right-0 w-3 h-3 bg-yellow-400 rounded-full -translate-y-1/2" />
             <div className="absolute bottom-0 left-1/2 w-3 h-3 bg-cyan-400 rounded-full -translate-x-1/2" />
             <div className="absolute top-1/2 left-0 w-3 h-3 bg-blue-300 rounded-full -translate-y-1/2" />
             <div className="absolute top-1/2 left-1/2 w-4 h-4 bg-white rounded-full -translate-x-1/2 -translate-y-1/2" />
@@ -57,7 +57,7 @@ export function Hero() {
           }}
           className="absolute top-32 left-20 opacity-30"
         >
-          <Heart size={24} className="text-blue-300" />
+          <Heart size={24} className="text-yellow-300" />
         </motion.div>
 
         <motion.div
@@ -80,10 +80,10 @@ export function Hero() {
         <motion.div
           animate={{
             background: [
-              "radial-gradient(circle at 20% 30%, rgba(0, 102, 204, 0.3) 0%, transparent 60%)",
-              "radial-gradient(circle at 80% 20%, rgba(0, 166, 184, 0.3) 0%, transparent 60%)",
-              "radial-gradient(circle at 40% 70%, rgba(0, 212, 229, 0.3) 0%, transparent 60%)",
-              "radial-gradient(circle at 20% 30%, rgba(0, 102, 204, 0.3) 0%, transparent 60%)"
+              "radial-gradient(circle at 20% 30%, rgba(0, 102, 204, 0.3) 0%, transparent 60%), radial-gradient(circle at 60% 80%, rgba(255, 193, 7, 0.08) 0%, transparent 60%)",
+              "radial-gradient(circle at 80% 20%, rgba(0, 166, 184, 0.3) 0%, transparent 60%), radial-gradient(circle at 30% 50%, rgba(255, 193, 7, 0.1) 0%, transparent 60%)",
+              "radial-gradient(circle at 40% 70%, rgba(0, 212, 229, 0.3) 0%, transparent 60%), radial-gradient(circle at 70% 30%, rgba(255, 193, 7, 0.08) 0%, transparent 60%)",
+              "radial-gradient(circle at 20% 30%, rgba(0, 102, 204, 0.3) 0%, transparent 60%), radial-gradient(circle at 60% 80%, rgba(255, 193, 7, 0.08) 0%, transparent 60%)"
             ]
           }}
           transition={{
@@ -114,7 +114,7 @@ export function Hero() {
             >
               <h1 className="heading-font text-3xl lg:text-4xl font-bold text-white leading-tight text-shadow-md">
                 IMPACT T1D: Patient Journey-Driven Approach for{' '}
-                <span className="bg-gradient-to-r from-blue-300 to-teal-300 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-300 via-yellow-300 to-teal-300 bg-clip-text text-transparent">
                   Optimizing T1D care
                 </span>
               </h1>

@@ -2,61 +2,68 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { BookOpen, Users, Award } from 'lucide-react'
+import { Play, Headphones, Clock, BookOpen } from 'lucide-react'
+import Image from 'next/image'
 
-interface PlaceholderCardProps {
+interface ProgramCardProps {
   title: string
+  subtitle: string
   description: string
+  features: string[]
   index: number
   icon: React.ReactNode
   color: string
+  imageSrc: string
 }
 
-function PlaceholderCard({ title, description, index, icon, color }: PlaceholderCardProps) {
+function ProgramCard({ title, subtitle, description, features, index, icon, color, imageSrc }: ProgramCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30, scale: 0.9 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
-      className="group cursor-pointer"
+      className="group"
     >
-      <div className={`${color} rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-white/20 group-hover:scale-[1.02] h-80 flex flex-col justify-center items-center text-center`}>
-        {/* Icon */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
-          className="mb-6"
-        >
-          <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+      <div className={`${color} rounded-2xl p-6 shadow-xl border border-white/20 h-96 flex flex-col`}>
+        {/* Header with Icon and Image */}
+        <div className="flex items-start space-x-4 mb-4">
+          <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center flex-shrink-0">
             {icon}
           </div>
-        </motion.div>
-
-        {/* Content */}
-        <div className="space-y-4">
-          <h3 className="text-2xl lg:text-3xl font-bold text-white">
-            {title}
-          </h3>
-          <p className="text-white/90 text-lg leading-relaxed">
-            {description}
-          </p>
+          <div className="flex-1">
+            <h3 className="text-xl font-bold text-white mb-1">
+              {title}
+            </h3>
+            <p className="text-white/80 text-sm font-medium">
+              {subtitle}
+            </p>
+          </div>
+          <div className="w-16 h-16 bg-white/10 rounded-lg overflow-hidden flex-shrink-0">
+            <Image
+              src={imageSrc}
+              alt={title}
+              width={64}
+              height={64}
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
 
-        {/* Coming Soon Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: index * 0.2 + 0.6 }}
-          className="mt-6"
-        >
-          <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white/80 text-sm font-medium">
-            Coming Soon
-          </div>
-        </motion.div>
+        {/* Description */}
+        <p className="text-white/90 text-sm leading-relaxed mb-4 flex-1">
+          {description}
+        </p>
+
+        {/* Key Features */}
+        <div className="space-y-2">
+          {features.slice(0, 3).map((feature, idx) => (
+            <div key={idx} className="flex items-center space-x-2">
+              <div className="w-1.5 h-1.5 bg-white/60 rounded-full"></div>
+              <span className="text-white/80 text-xs">{feature}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </motion.div>
   )
@@ -66,24 +73,48 @@ export function EducationalPrograms() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
 
-  const placeholders = [
+  const programs = [
     {
-      title: "T1D Masterclass",
-      description: "Comprehensive educational program covering the latest in T1D management and care strategies",
-      icon: <BookOpen size={40} className="text-white" />,
-      color: "bg-gradient-to-br from-blue-500 to-blue-600"
+      title: "T1D Video Briefs",
+      subtitle: "Short-form Educational Videos",
+      description: "2-5 minute videos featuring healthcare professionals, patient voices, and T1D partners. Focus on disease state information, trial data, and guidelines to build awareness and aid recruitment.",
+      features: [
+        "Expert commentary on trial results",
+        "Patient care perspectives",
+        "Treatment decision-making insights",
+        "Filmed at major conferences"
+      ],
+      icon: <Play size={24} className="text-white" />,
+      color: "bg-gradient-to-br from-blue-500 to-blue-600",
+      imageSrc: "/mod.png"
     },
     {
-      title: "Clinical Resources",
-      description: "Evidence-based tools and resources for healthcare professionals managing T1D patients",
-      icon: <Award size={40} className="text-white" />,
-      color: "bg-gradient-to-br from-teal-500 to-teal-600"
+      title: "T1D Podcasts",
+      subtitle: "Podcast|PLUS Format",
+      description: "Mobile-first podcasts with animated visuals, graphs, and slides for enhanced learning. Combines audio with visual elements for better engagement and retention.",
+      features: [
+        "Animated text and graphs",
+        "Mobile-first design",
+        "Enhanced visual learning",
+        "Available on all platforms"
+      ],
+      icon: <Headphones size={24} className="text-white" />,
+      color: "bg-gradient-to-br from-teal-500 to-teal-600",
+      imageSrc: "/pod.png"
     },
     {
-      title: "Community Hub",
-      description: "Interactive platform connecting T1D care providers for knowledge sharing and collaboration",
-      icon: <Users size={40} className="text-white" />,
-      color: "bg-gradient-to-br from-purple-500 to-purple-600"
+      title: "T1D MinuteCE",
+      subtitle: "Microlearning Education",
+      description: "Advanced microlearning platform featuring bite-sized episodes under 5 minutes each, designed for maximum retention and behavioral change. Features innovative time banking system and nonlinear learning journeys with comprehensive competency assessments.",
+      features: [
+        "Episodes under 5 minutes",
+        "Time banking system",
+        "Nonlinear learning journey",
+        "Industry-leading outcomes"
+      ],
+      icon: <Clock size={24} className="text-white" />,
+      color: "bg-gradient-to-br from-slate-500 to-slate-600",
+      imageSrc: "/mince.png"
     }
   ]
 
@@ -120,10 +151,10 @@ export function EducationalPrograms() {
           </p>
         </motion.div>
 
-        {/* Placeholders Grid */}
+        {/* Programs Grid */}
         <div className="grid md:grid-cols-3 gap-8">
-          {placeholders.map((placeholder, index) => (
-            <PlaceholderCard key={index} {...placeholder} index={index} />
+          {programs.map((program, index) => (
+            <ProgramCard key={index} {...program} index={index} />
           ))}
         </div>
       </div>

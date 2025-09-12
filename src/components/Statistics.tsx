@@ -22,21 +22,21 @@ function StatisticCard({ icon, value, description, index, color }: StatisticCard
       className="group"
     >
       <div className={`relative ${color} rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 group-hover:scale-105 h-32`}>
-        <div className="flex items-center space-x-3 h-full">
+        <div className="flex items-center justify-center space-x-3 h-full">
           <div className="p-2 bg-white/20 rounded-lg flex-shrink-0">
             {icon}
           </div>
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 flex flex-col justify-center">
             <motion.div
               initial={{ opacity: 0, scale: 0 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.2 + 0.3 }}
-              className="text-lg lg:text-xl font-bold text-white mb-1"
+              className="text-xl lg:text-2xl font-bold text-white mb-1"
             >
               {value}
             </motion.div>
-            <p className="text-white/90 text-xs leading-tight">
+            <p className="text-white/90 text-sm leading-tight">
               {description}
             </p>
           </div>

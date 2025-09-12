@@ -25,17 +25,17 @@ function ProgramCard({ title, subtitle, description, features, index, icon, colo
       transition={{ duration: 0.6, delay: index * 0.2 }}
       className="group"
     >
-      <div className={`${color} rounded-2xl p-6 shadow-xl border border-white/20 h-96 flex flex-col`}>
+      <div className={`${color} rounded-2xl p-6 shadow-xl border border-white/20 h-[420px] flex flex-col`}>
         {/* Header with Icon and Image */}
         <div className="flex items-start space-x-4 mb-4">
           <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center flex-shrink-0">
             {icon}
           </div>
-          <div className="flex-1">
-            <h3 className="text-xl font-bold text-white mb-1">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-xl font-bold text-white mb-1 leading-tight">
               {title}
             </h3>
-            <p className="text-white/80 text-sm font-medium">
+            <p className="text-white/80 text-base font-medium whitespace-nowrap">
               {subtitle}
             </p>
           </div>
@@ -51,16 +51,18 @@ function ProgramCard({ title, subtitle, description, features, index, icon, colo
         </div>
 
         {/* Description */}
-        <p className="text-white/90 text-sm leading-relaxed mb-4 flex-1">
-          {description}
-        </p>
+        <div className="mb-4">
+          <p className="text-white/90 text-base leading-relaxed">
+            {description}
+          </p>
+        </div>
 
         {/* Key Features */}
-        <div className="space-y-2">
+        <div className="space-y-2 mt-auto">
           {features.slice(0, 3).map((feature, idx) => (
-            <div key={idx} className="flex items-center space-x-2">
-              <div className="w-1.5 h-1.5 bg-white/60 rounded-full"></div>
-              <span className="text-white/80 text-xs">{feature}</span>
+            <div key={idx} className="flex items-start space-x-3">
+              <div className="w-1.5 h-1.5 bg-white/60 rounded-full mt-1.5 flex-shrink-0"></div>
+              <span className="text-white/80 text-xs leading-relaxed">{feature}</span>
             </div>
           ))}
         </div>
@@ -76,7 +78,7 @@ export function EducationalPrograms() {
   const programs = [
     {
       title: "T1D Video Briefs",
-      subtitle: "Short-form Educational Videos",
+      subtitle: "Short-form Videos",
       description: "2-5 minute videos featuring healthcare professionals, patient voices, and T1D partners. Focus on disease state information, trial data, and guidelines to build awareness and aid recruitment.",
       features: [
         "Expert commentary on trial results",
@@ -104,7 +106,7 @@ export function EducationalPrograms() {
     },
     {
       title: "T1D MinuteCE",
-      subtitle: "Microlearning Education",
+      subtitle: "Microlearning Platform",
       description: "Advanced microlearning platform featuring bite-sized episodes under 5 minutes each, designed for maximum retention and behavioral change. Features innovative time banking system and nonlinear learning journeys with comprehensive competency assessments.",
       features: [
         "Episodes under 5 minutes",

@@ -52,7 +52,7 @@ export function VideoIntroduction() {
           >
             Your Comprehensive Hub for Excellence in{' '}
             <span className="bg-gradient-to-r from-blue-600 via-yellow-500 to-teal-600 bg-clip-text text-transparent">
-              T1D education
+              T1D Education
             </span>
           </motion.h2>
 
@@ -62,15 +62,9 @@ export function VideoIntroduction() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.2, delay: 0.5 }}
           >
-            <div className="space-y-3 text-xs lg:text-sm leading-relaxed">
+            <div className="text-xs lg:text-sm leading-relaxed">
               <p className="text-slate-700">
-                Through integration of evidence-based therapies, cutting-edge technologies, and the authentic patient voice, IMPACT equips clinicians to deliver care that is both scientifically rigorous and deeply personalized.
-              </p>
-              <p className="text-slate-700">
-                By aligning treatment strategies with guideline-directed goals and patient priorities, and by embedding real-world data and quality improvement principles, the IMPACT T1D fosters sustainable improvements in glycemic control, quality of life, and complication prevention.
-              </p>
-              <p className="text-slate-700">
-                Together, IMPACT T1D offers a unique opportunity to drive meaningful change in the management, acceleration in the potential adoption of innovative therapies, and ultimately elevate standards of care on a global scale.
+                Through integration of evidence-based therapies, cutting-edge technologies, and the authentic patient voice, IMPACT equips clinicians to deliver care that is both scientifically rigorous and deeply personalized. By aligning treatment strategies with guideline-directed goals and patient priorities, and by embedding real-world data and quality improvement principles, IMPACT T1D fosters sustainable improvements in glycemic control, quality of life, and complication prevention. IMPACT T1D offers a unique opportunity to drive meaningful change in the management, acceleration in the potential adoption of innovative therapies, and ultimately elevate standards of care on a global scale.
               </p>
             </div>
           </motion.div>

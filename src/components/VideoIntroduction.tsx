@@ -32,7 +32,7 @@ export function VideoIntroduction() {
             <div className="relative w-full max-w-2xl mx-auto">
               <div className="relative w-full h-[600px]">
                 <Image
-                  src="/graphic.png"
+                  src="/newgraphic.png"
                   alt="T1D Impact Graphic"
                   fill
                   className="object-contain"

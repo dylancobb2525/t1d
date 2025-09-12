@@ -156,13 +156,14 @@ export function Hero() {
             className="relative"
           >
             <div className="relative w-full max-w-xl mx-auto">
-              {/* Placeholder Box */}
-              <div className="relative w-full h-80 bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-2xl flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl text-white/30 mb-4">📊</div>
-                  <div className="text-white/60 text-lg font-medium">Placeholder</div>
-                  <div className="text-white/40 text-sm">Image Coming Soon</div>
-                </div>
+              {/* Hero Image */}
+              <div className="relative w-full h-80 rounded-2xl overflow-hidden">
+                <Image
+                  src="/hero.png"
+                  alt="Hero Image"
+                  fill
+                  className="object-cover"
+                />
               </div>
 
               {/* Floating Elements */}
